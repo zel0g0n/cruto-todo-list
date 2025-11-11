@@ -1,27 +1,33 @@
 .form {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   input {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
     height: 32px;
     border: none;
     outline: none;
     border-radius: 3px;
     padding: 10px;
-    color: #000000;
+    color: #fff;
     font-size: 14px;
+    border: 1px solid rgba(255, 215, 0, 1);
+    
     &::placeholder {
-      color: #000;
+      color: #ddd;
     }
   }
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
   .title {
-    width: 240px;
+    width: 210px;
   }
   .number {
-    width: 64px;
+    width: 94px;
   }
   .add {
+    cursor: pointer;
     width: 92px;
     height: 32px;
     background-color: inherit;
