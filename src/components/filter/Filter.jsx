@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Filter.scss'
-const Filter = ({updateFilter}) => {
-  
+import { dataContext } from '../../context/Context'
+const Filter = () => {
+  const {dispatch} = useContext(dataContext)
   const [buttonGroup,setButtonGroup] = useState([
     {
       name: 'All plans',
@@ -23,7 +24,7 @@ const Filter = ({updateFilter}) => {
     }
   ]) 
   const filterHandler = (item) => {
-    updateFilter(item.content)
+    dispatch({type: 'updateFilter', payload: item.content})
     
     const changedData = buttonGroup.map(i => {
       if(i.id == item.id) {
@@ -34,7 +35,6 @@ const Filter = ({updateFilter}) => {
       }
     })
     setButtonGroup(changedData)
-    
   }
 
   return (

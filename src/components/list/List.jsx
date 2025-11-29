@@ -1,8 +1,13 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import ListItem from '../list-item/List-Item'
+import { dataContext } from '../../context/Context'
 
-const List = ({data, setData, onDelete, onToggleActive}) => {
+const List = () => {
+  const {state} = useContext(dataContext)
+  const {data} = state
   const audioRef =  useRef(null)
+  console.log('list')
+
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date()
@@ -24,7 +29,7 @@ const List = ({data, setData, onDelete, onToggleActive}) => {
   return (
     <div className='list'>
       <audio ref={audioRef} src="/alarm-audio.wav" />
-      {data.map((item) => (<ListItem activeToggle={() => onToggleActive(item.id)} deleteHandler={() => onDelete(item.id)} key={item.id} product={item}/>))}
+      {data.map((item) => (<ListItem  key={item.id} product={item}/>))}
     </div>
   )
 }

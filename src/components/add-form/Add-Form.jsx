@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Add-Form.scss'
-const AddForm = ({onAdd}) => {
+import { dataContext } from '../../context/Context'
+const AddForm = () => {
+  const {dispatch} = useContext(dataContext)
+  console.log('add form')
   const [formInfo,setFormInfo] = useState({
     title: '',
     size: '00:00'
   })
-
   const formChangeHandler = (e) => {
-    e.preventDefault()
     setFormInfo(prev => ({...prev, [e.target.name]: e.target.value}))
   }
 
@@ -16,9 +17,10 @@ const AddForm = ({onAdd}) => {
     if(!formInfo.size || !formInfo.title) {
       alert("Please, complete form information datas")
     }else {
-      onAdd(formInfo)
+      dispatch({type: 'add',payload: formInfo})
     }
     setFormInfo({title: '', size: '00:00'})
+
   }
 
   return (

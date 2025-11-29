@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import { useContext } from 'react'
 import './List-Item.scss'
-const ListItem = ({product,deleteHandler, activeToggle}) => {
+import { dataContext } from '../../context/Context'
+const ListItem = ({product}) => {
   
-
+  const {dispatch} = useContext(dataContext)
 
   return (
     <div className={`list__item ${product.active?'active-item':''}`}>
@@ -11,8 +12,8 @@ const ListItem = ({product,deleteHandler, activeToggle}) => {
         <span className='name'>{product.title}</span>
       </div>
       <div className="list__item-action">
-        <span onClick={activeToggle} className="check ">&#10003;</span>
-        <span onClick={deleteHandler} className="times">&times;</span>
+        <span onClick={() => dispatch({type: 'activeToggle', payload: product.id})} className="check ">&#10003;</span>
+        <span onClick={() => dispatch({type: 'delete', payload: product.id})} className="times">&times;</span>
       </div>
     </div>
   )
